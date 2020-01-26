@@ -161,6 +161,8 @@ class ContainerState(MachineState):
             self.public_host_key = self.host_ssh.run_command("nixos-container show-host-key {0}".format(self.vm_id), capture_stdout=True).rstrip()
             nixops.known_hosts.add(self.get_ssh_name(), self.public_host_key)
 
+        self.log("DONE")
+
     def destroy(self, wipe=False):
         if not self.vm_id: return True
 
